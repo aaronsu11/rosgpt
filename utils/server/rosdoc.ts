@@ -2,15 +2,16 @@ import { PineconeClient } from "@pinecone-database/pinecone";
 import { VectorDBQAChain } from "langchain/chains";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { OpenAI } from "langchain/llms/openai";
+import { Document } from "langchain/document";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 
 export const initPineconeClient = async () => {
   const client = new PineconeClient();
   await client.init({
-    apiKey: process.env.PINECONE_API_KEY,
-    environment: process.env.PINECONE_ENVIRONMENT,
+    apiKey: process.env.PINECONE_API_KEY || '',
+    environment: process.env.PINECONE_ENVIRONMENT || '',
   });
-  const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
+  const pineconeIndex = client.Index(process.env.PINECONE_INDEX || '');
 
   const vectorStore = await PineconeStore.fromExistingIndex(
     new OpenAIEmbeddings(),
@@ -104,7 +105,7 @@ export const chat = async ({
 
   const response = await chain.call({ query: query });
   
-  const sources = response.sourceDocuments.map((doc) => doc.metadata.source);
+  const sources = response.sourceDocuments.map((doc: Document) => doc.metadata.source);
   const sourcesText = sources.join('\n\n');
 
   return sourcesText ? `${response.text}\n\n${sourcesText}` : response.text;
