@@ -13,10 +13,12 @@ export interface PluginKey {
 
 export enum PluginID {
   GOOGLE_SEARCH = 'google-search',
+  ROS_DOC_SEARCH = 'ros-doc-search',
 }
 
 export enum PluginName {
   GOOGLE_SEARCH = 'Google Search',
+  ROS_DOC_SEARCH = 'ROS Doc Search',
 }
 
 export const Plugins: Record<PluginID, Plugin> = {
@@ -30,6 +32,24 @@ export const Plugins: Record<PluginID, Plugin> = {
       },
       {
         key: 'GOOGLE_CSE_ID',
+        value: '',
+      },
+    ],
+  },
+  [PluginID.ROS_DOC_SEARCH]: {
+    id: PluginID.ROS_DOC_SEARCH,
+    name: PluginName.ROS_DOC_SEARCH,
+    requiredKeys: [
+      {
+        key: 'PINECONE_API_KEY',
+        value: '',
+      },
+      {
+        key: 'PINECONE_INDEX_NAME',
+        value: '',
+      },
+      {
+        key: 'PINECONE_ENVIRONMENT',
         value: '',
       },
     ],

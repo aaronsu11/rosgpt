@@ -13,10 +13,12 @@
   },
   "dependencies": {
     "@dqbd/tiktoken": "^1.0.2",
+    "@pinecone-database/pinecone": "^0.0.14",
     "@tabler/icons-react": "^2.9.0",
     "@vercel/analytics": "^1.0.0",
     "eventsource-parser": "^0.1.0",
     "i18next": "^22.4.13",
+    "langchain": "^0.0.63",
     "next": "13.2.4",
     "next-i18next": "^13.2.2",
     "openai": "^3.2.1",

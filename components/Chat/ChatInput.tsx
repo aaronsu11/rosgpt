@@ -5,6 +5,7 @@ import {
   IconPlayerStop,
   IconRepeat,
   IconSend,
+  IconRobot
 } from '@tabler/icons-react';
 import {
   KeyboardEvent,
@@ -285,7 +286,11 @@ export const ChatInput = ({
             onClick={() => setShowPluginSelect(!showPluginSelect)}
             onKeyDown={(e) => {}}
           >
-            {plugin ? <IconBrandGoogle size={20} /> : <IconBolt size={20} />}
+            {plugin?.id === 'google-search' ? (
+              <IconBrandGoogle size={20} />
+            ) : plugin?.id === 'ros-doc-search' ? (
+              <IconRobot size={20} />
+            ) : <IconBolt size={20} />}
           </button>
 
           {showPluginSelect && (

@@ -9,5 +9,9 @@ export const getEndpoint = (plugin: Plugin | null) => {
     return 'api/google';
   }
 
+  if (plugin.id === PluginID.ROS_DOC_SEARCH) {
+    return 'api/rosdoc';
+  }
+
   return 'api/chat';
 };
